@@ -31,6 +31,7 @@ const data = {
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: 'bottom',
@@ -38,7 +39,14 @@ const options = {
         color: '#6b7280'
       }
     },
-  }
+  },
 }
 </script>
 
+<style scoped>
+:deep(.chartjs-render-monitor) {
+  height: 300px !important;
+  max-height: 100%;
+  width: 100% !important;
+}
+</style>

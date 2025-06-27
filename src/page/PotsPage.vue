@@ -40,7 +40,7 @@ function getTransactionsForname(name) {
   <div>
     <h1 class="text-2xl font-bold text-gray-700 mb-6">Pots</h1>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 min-w-[300px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div
         v-for="(Pot, index) in pots"
         :key="index"
@@ -65,30 +65,30 @@ function getTransactionsForname(name) {
           ></div>
         </div>
 
-        <div class="divide-y divide-gray-100 text-sm text-gray-700">
+        <div class="divide-y divide-gray-100 text-sm text-gray-700 max-h-48 overflow-y-auto">
           <div
             v-for="(tx, i) in getTransactionsForname(Pot.name)"
             :key="i"
             class="flex justify-between py-1"
           >
-            <span>{{ tx.name }}</span>
+            <span class="truncate max-w-[40%]">{{ tx.name }}</span>
             <span>${{ Math.abs(tx.amount).toFixed(2) }}</span>
-            <span class="text-gray-500">{{ tx.date }}</span>
+            <span class="text-gray-500">{{ new Date(tx.date).toLocaleDateString() }}</span>
           </div>
         </div>
 
-        <div class="flex  gap-3">
+        <div class="flex flex-col sm:flex-row gap-3">
           <button
-            class="w-96 px-6 py-2 rounded-md text-gray-700 bg-gray-200 "
+            class="flex-1 px-6 py-2 rounded-md text-gray-700 bg-gray-200"
             @click="$emit('addToPot', Pot)"
           >
             + Add Money
           </button>
           <button
-            class="w-96  px-6 py-2 rounded-md text-gray-700 bg-gray-200 "
-            @click="$emit('addToPot', Pot)"
+            class="flex-1 px-6 py-2 rounded-md text-gray-700 bg-gray-200"
+            @click="$emit('withdrawFromPot', Pot)"
           >
-           Withdraw
+            Withdraw
           </button>
         </div>
       </div>
