@@ -1,9 +1,7 @@
 <template>
-      <h1 class="text-xl font-bold text-gray-600 space-y-2 mb-4">Transactions
-</h1>
+  <h1 class="text-xl font-bold text-gray-600 mb-4">Transactions</h1>
 
   <div class="overflow-x-auto bg-white shadow-md rounded-lg p-4">
-    <!-- Search -->
     <input
       v-model="searchQuery"
       placeholder="Search by name or category"
@@ -27,18 +25,22 @@
           class="hover:bg-gray-50"
         >
           <td class="px-6 py-4 flex items-center gap-3 whitespace-nowrap">
-            <img :src="tx.avatar" alt="avatar" class="w-8 h-8 rounded-full" />
+            <img :src="tx.avatar" alt="avatar" class="w-8 h-8 rounded-full object-cover" />
             <span>{{ tx.name }}</span>
           </td>
           <td class="px-6 py-4 whitespace-nowrap">{{ tx.category }}</td>
-          <td class="px-6 py-4 whitespace-nowrap">{{ tx.date }}</td>
-          <td class="px-6 py-4 text-right whitespace-nowrap">{{ tx.amount }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ new Date(tx.date).toLocaleDateString() }}</td>
+          <td
+            class="px-6 py-4 text-right whitespace-nowrap"
+            :class="tx.amount < 0 ? 'text-red-500' : 'text-green-600'"
+          >
+            {{ tx.amount < 0 ? '-' : '+' }}${{ Math.abs(tx.amount).toFixed(2) }}
+          </td>
         </tr>
       </tbody>
     </table>
 
-    <!-- Pagination -->
-    <div class="mt-4 flex justify-center space-x-2">
+    <div class="mt-4 flex justify-center flex-wrap gap-2">
       <button
         class="px-3 py-1 border rounded disabled:opacity-50"
         @click="prevPage"
@@ -51,7 +53,10 @@
         v-for="page in totalPages"
         :key="page"
         @click="goToPage(page)"
-        :class="['px-3 py-1 border rounded', { 'bg-gray-300': currentPage === page }]"
+        :class="[
+          'px-3 py-1 border rounded',
+          currentPage === page ? 'bg-gray-300' : 'hover:bg-gray-100 cursor-pointer'
+        ]"
       >
         {{ page }}
       </button>
@@ -77,7 +82,6 @@ const searchQuery = ref('')
 const currentPage = ref(1)
 const itemsPerPage = 5
 
-// Filter data by search query (name or category)
 const filteredData = computed(() => {
   if (!searchQuery.value) return transactions
   return transactions.filter((tx) =>
@@ -86,21 +90,17 @@ const filteredData = computed(() => {
   )
 })
 
-
-// Pagination
-const totalPages = computed(() => Math.ceil(filteredData.value.length / itemsPerPage))
+const totalPages = computed(() => Math.max(1, Math.ceil(filteredData.value.length / itemsPerPage)))
 
 const paginatedData = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   return filteredData.value.slice(start, start + itemsPerPage)
 })
 
-// Reset to page 1 if search query changes and current page is out of range
 watch(searchQuery, () => {
   currentPage.value = 1
 })
 
-// Pagination controls
 function prevPage() {
   if (currentPage.value > 1) currentPage.value--
 }
