@@ -10,7 +10,7 @@ This project helps you visualize transactions, manage recurring bills, and stay 
 ## 📸 Live Demo
 
 🌐 **Live Version:**  
-*(https://kareen133.github.io/overview)*
+*(https://kareen133.github.io/personal-Finance-app/)*
 
 ---
 
