@@ -15,17 +15,7 @@ console.log("transactions" , transactions.filter(tx => tx.category === 'Bills')
 <template>
   <div class="flex flex-col md:flex-row gap-4">
 
-    <div class="flex-1 min-w-[300px] space-y-6">
-
-      <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-sm">
-        <h1 class="text-xl font-semibold capitalize text-gray-700">Total bills</h1>
-        <p class="text-lg text-gray-900">$384.98</p>
-      </div>
-
-      <Bills />
-
-    </div>
-
+   
     <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-4xl">
       <!-- Header Row -->
       <div class="flex justify-between mb-6">
