@@ -1,3 +1,5 @@
+
+
 # Personal Dashboard
 
 Take control of your personal finances and daily activities with the **Personal Dashboard**, a responsive web app built with Vue.js.  
@@ -8,14 +10,14 @@ This project helps you visualize transactions, manage recurring bills, and stay 
 ## 📸 Live Demo
 
 🌐 **Live Version:**  
-*(Add your deployment link here once hosted)*
+*(https://kareen133.github.io/overview)*
 
 ---
 
 ## 📂 Repository
 
 🔗 **Source Code:**  
-*(Add your repository link here)*
+*(https://github.com/kareen133/personal-Finance-app.git)*
 
 ---
 
@@ -50,4 +52,4 @@ To **run or modify** this project locally:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/personal-dashboard.git
+   git clone https://github.com/kareen133/personal-Finance-app.git
